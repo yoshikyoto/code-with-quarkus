@@ -10,13 +10,32 @@ repositories {
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    // quarkus arc は DI のライブラリっぽい
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-rest'
+
+    // Json と entity の変換を行う quarkus-rest-jackson
+    // jackson か jsonb を使うことになる
+    // https://quarkus.io/guides/rest#json-serialisation
+    implementation 'io.quarkus:quarkus-rest-jackson'
+
+    // サーブレットを使用する（web.xml を使う）には quarkus-undertow が必要らしい
+    // 今回は使わないことにした
+    // https://ja.quarkus.io/guides/http-reference#servlet-config
+    // implementation 'io.quarkus:quarkus-undertow'
+
+
+    // Datastore への書き込みを行う objectify
+    implementation 'com.googlecode.objectify:objectify:6.0.9'
+
+
+
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
 
-group 'org.acme'
+group 'org.kintai'
 version '1.0.0-SNAPSHOT'
 
 java {

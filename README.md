@@ -1,14 +1,34 @@
 # code-with-quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Quarkus フレームワークを使って作成された Web アプリケーション
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+https://quarkus.io/
 
-## Running the application in dev mode
+## ローカルサーバーの立ち上げ
 
-You can run your application in dev mode that enables live coding using:
 ```shell script
 ./gradlew quarkusDev
+```
+
+## ディレクトリ構成
+
+* app.yaml -- Google App Engine の構成ファイル
+
+## デプロイ
+
+構成の更新
+
+```sh
+gcloud auth login
+gcloud app deploy app.yaml
+```
+
+アプリケーションのデプロイ
+
+```sh
+./gradlew build
+# バージョン名（1.0.0-SNAPSHOT）は build.gradle で指定した通りになる
+gcloud app deploy build/code-with-quarkus-1.0.0-SNAPSHOT-runner.jar
 ```
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
